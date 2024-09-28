@@ -1,5 +1,6 @@
 package com.route.todoappc40gsat.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -13,9 +14,10 @@ import java.time.format.DateTimeFormatter
 class TasksAdapter(var tasksList: List<Task>) : Adapter<TasksAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(val binding: ItemTaskBinding) : ViewHolder(binding.root) {
+        @SuppressLint("SimpleDateFormat")
         fun bind(task: Task) {
             binding.taskTitle.text = task.title
-            val dateFormattedAsString = SimpleDateFormat("yyyy/MM/dd").format(task.date)
+            val dateFormattedAsString = SimpleDateFormat("yyyy/MM/dd").format(task.date!!)
             binding.taskDate.text = dateFormattedAsString
         }
     }
