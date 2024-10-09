@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDo App C40 G Sat</string>
+    <string name="list">قائمة</string>
+    <string name="settings">اعدادات</string>
+    <string name="todo_list">قائمة المهام</string>
+    <string name="add_new_task">مهمة جديدة</string>
+    <string name="enter_task_title">ادخل الاعنوان ...</string>
+    <string name="enter_task_desc">ادخل شرح المهمة ...</string>
+    <string name="add_task">مهمة جديدة</string>
+    <string name="select_task_date">اختار اليوم :</string>
+    <string name="required">مطلوب</string>
+    <string name="edit_task">تعديل المهمة</string>
+    <string name="save">حفظ</string>
+    <string name="language">اللغة</string>
+    <string name="english">انجليزية</string>
+    <string name="arabic">عربية</string>
+    <string name="mode">وضع</string>
+    <string name="light">مضيء</string>
+    <string name="dark">داكن</string>
+
+    <string-array name="language">
+        <item>انجليزي</item>
+        <item>عربي</item>
+    </string-array>
+    <string-array name="mode">
+        <item>مضيء</item>
+        <item>داكن</item>
+    </string-array>
+
+</resources>

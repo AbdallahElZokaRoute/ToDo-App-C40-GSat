@@ -1,12 +1,15 @@
 package com.route.todoappc40gsat.fragments
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Telephony.Mms.Intents
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.helper.widget.Carousel.Adapter
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.kizitonwose.calendar.core.Week
@@ -17,11 +20,15 @@ import com.kizitonwose.calendar.view.WeekDayBinder
 import com.kizitonwose.calendar.view.WeekHeaderFooterBinder
 import com.kizitonwose.calendar.view.WeekScrollListener
 import com.route.todoappc40gsat.CalendarDayWeekContainer
+import com.route.todoappc40gsat.EditTaskActivity
 import com.route.todoappc40gsat.R
 import com.route.todoappc40gsat.adapters.TasksAdapter
 import com.route.todoappc40gsat.clearTime
 import com.route.todoappc40gsat.database.TaskDatabase
+import com.route.todoappc40gsat.database.dao.TaskDao
+import com.route.todoappc40gsat.database.model.Task
 import com.route.todoappc40gsat.databinding.FragmentTodoListBinding
+import com.route.todoappc40gsat.utilts.Constants
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
@@ -29,6 +36,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class TodoListFragment : Fragment() {
+    lateinit var doe: TaskDao
     lateinit var binding: FragmentTodoListBinding
     lateinit var adapter: TasksAdapter
     lateinit var calendar: Calendar
@@ -52,6 +60,7 @@ class TodoListFragment : Fragment() {
                 }
 
             }
+            doe = TaskDatabase.getInstance(requireContext()).getTaskDao()
             binding.customCalendarView.dayBinder =
                 object : WeekDayBinder<CalendarDayWeekContainer> {
                     override fun bind(container: CalendarDayWeekContainer, data: WeekDay) {
@@ -122,5 +131,17 @@ class TodoListFragment : Fragment() {
         val tasks = TaskDatabase.getInstance(requireContext()).getTaskDao().getAllTasks()
         adapter = TasksAdapter(tasks)
         binding.tasksRecyclerView.adapter = adapter
+
+        adapter.onTaskClickListener =
+            TasksAdapter.OnItemClickListener { position, task ->
+                val intent = Intent(requireContext(),EditTaskActivity::class.java)
+                intent.putExtra(Constants.TASK_KEY,task)
+                startActivity(intent)
+            }
+
+        adapter.onDeleteClick = {position, task ->
+            doe.deleteTask(task)
+            adapter.deleteTask(tasks,position)
+        }
     }
 }

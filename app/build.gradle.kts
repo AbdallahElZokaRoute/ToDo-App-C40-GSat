@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -18,6 +19,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+    
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -48,6 +53,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     // Version Catalog
     implementation(libs.androidx.room.runtime)
+    implementation(libs.support.annotations)
     ksp(libs.androidx.room.compiler)
     implementation(libs.calendar.view)
     // KAPT(X) vs KSP (V)
@@ -55,4 +61,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //swipe
+    implementation (libs.swipelayout)
+
 }
