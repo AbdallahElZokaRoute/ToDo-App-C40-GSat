@@ -7,5 +7,6 @@ object Constants {
     const val DARK = "dark"
     const val SETTING_SHARED_PREFERENCES_NAME = "com.route.todoappc40gsat.Setting_shared_Preferences"
     const val DARK_MODE_KEY = "darkKey"
+    const val TASK_KEY = "task"
 
 }
