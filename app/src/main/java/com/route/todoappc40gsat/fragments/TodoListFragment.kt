@@ -25,6 +25,7 @@ import com.route.todoappc40gsat.R
 import com.route.todoappc40gsat.adapters.TasksAdapter
 import com.route.todoappc40gsat.clearTime
 import com.route.todoappc40gsat.database.TaskDatabase
+import com.route.todoappc40gsat.database.dao.TaskDao
 import com.route.todoappc40gsat.database.model.Task
 import com.route.todoappc40gsat.databinding.FragmentTodoListBinding
 import com.route.todoappc40gsat.utilts.Constants
@@ -35,6 +36,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class TodoListFragment : Fragment() {
+    lateinit var doe: TaskDao
     lateinit var binding: FragmentTodoListBinding
     lateinit var adapter: TasksAdapter
     lateinit var calendar: Calendar
@@ -58,6 +60,7 @@ class TodoListFragment : Fragment() {
                 }
 
             }
+            doe = TaskDatabase.getInstance(requireContext()).getTaskDao()
             binding.customCalendarView.dayBinder =
                 object : WeekDayBinder<CalendarDayWeekContainer> {
                     override fun bind(container: CalendarDayWeekContainer, data: WeekDay) {
@@ -135,5 +138,10 @@ class TodoListFragment : Fragment() {
                 intent.putExtra(Constants.TASK_KEY,task)
                 startActivity(intent)
             }
+
+        adapter.onDeleteClick = {position, task ->
+            doe.deleteTask(task)
+            adapter.deleteTask(tasks,position)
+        }
     }
 }

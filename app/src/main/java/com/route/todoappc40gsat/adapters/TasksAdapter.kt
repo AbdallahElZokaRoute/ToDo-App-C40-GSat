@@ -78,7 +78,19 @@ class TasksAdapter(var tasksList: List<Task>) : Adapter<TasksAdapter.TaskViewHol
 
             }
         }
+
+        onDeleteClick.let {
+            holder.binding.leftItem.setOnClickListener{
+                onDeleteClick?.invoke(position,task)
+            }
+        }
     }
+
+    fun deleteTask(tasks: Task, position: Int) {
+        this.tasksList
+        notifyItemRemoved(position)
+    }
+
     val onDoneBtnClickListaner: OnItemClickListener? = null
     var onTaskClickListener: OnItemClickListener? = null
 
@@ -86,6 +98,7 @@ class TasksAdapter(var tasksList: List<Task>) : Adapter<TasksAdapter.TaskViewHol
         fun onClick(position: Int,task: Task)
     }
 
-
+var onDeleteClick:((Int,Task)->Unit)? = null
 
 }
+

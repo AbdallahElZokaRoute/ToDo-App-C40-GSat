@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     // Version Catalog
     implementation(libs.androidx.room.runtime)
+    implementation(libs.support.annotations)
     ksp(libs.androidx.room.compiler)
     implementation(libs.calendar.view)
     // KAPT(X) vs KSP (V)
@@ -60,4 +61,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //swipe
+    implementation (libs.swipelayout)
+
 }

@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_mint">#DFECDB</color>
     <color name="green">#2FBC03</color>
+    <color name="red">#BC0303</color>
     <color name="black2">#060E1E</color>
     <color name="black3">#141922</color>
     <color name="black2_variant">#060C16</color>
@@ -11,3 +12,4 @@
     <color name="blue_variant">#5A83B6</color>
     <color name="gray">#C8C9CB</color>
 </resources>
+
